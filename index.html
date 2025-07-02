@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mini Meta List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+
+
+    <div id="pkmnContainer" class="container my-5">
+      <form id="pkmnForm">
+        <div class="form-group mb-3">
+          <label for="pkmnTextarea">Tournament ID</label>
+          <input class="form-control" value="6850825127d8bc24cf2556aa"
+          id="tourneyId"></input>
+        </div>   
+        <button type="submit" class="btn btn-primary mb-3">goooooo</button>
+      </form>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Name</th>
+            <th scope="col">Use Rate</th>
+            <th scope="col">Win Rate</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <tr>
+            <!-- <td colspan="2">
+                <table class="table mt-5">
+                <thead>
+                    <th scope="col">Items</th>
+                    <th scope="col">Moves</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Focus</td>
+                        <td>Sludge</td>
+                    </tr>
+                </tbody>
+                </table>
+            </td> -->
+            
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+  </body>
+  <template id="pkmnDetailedInfoTable">
+    <table class="table collapse">
+      <thead>
+        <tr>
+          <th scope="col">Moves</th>
+          <th scope="col"></th>
+
+          <th scope="col">Items</th>
+          <th scope="col"></th>
+
+          <th scope="col">Tera Types</th>
+          <th scope="col"></th>
+
+          <th scope="col">Abilities</th>
+          <th scope="col"></th>
+
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </template>
+  <template id="pkmnRow">
+    <div class="row">
+
+    </div>
+  </template>
+  <template id="pkmnStatsBar">
+    <div class="progress col-8 mt-5">
+      <div class="progress-bar" id="statsBar" role="progressbar" aria-valuemin="0" aria-valuemax="255"></div>
+    </div>
+  </template>
+  <script src="main.js"></script>
+
+</html>
