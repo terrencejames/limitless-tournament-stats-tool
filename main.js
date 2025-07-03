@@ -109,7 +109,7 @@ const populatePkmnDetailedInfoTableCell = (list, index) => {
     }
     return [newTdName, newTdPercent];
 }
-const populatePkmnDetailedInfoTable = async (pokemonObj, table) => {
+const populatePkmnDetailedInfoTable = async (pokemonObj, table, spinner, event) => {
     // Moves, Items, Tera, Abilities
     const detailedInfo = await getPokemonStats(tourneyId, pokemonObj.id);
     const tbody = table.querySelector("tbody");
@@ -131,25 +131,27 @@ const populatePkmnDetailedInfoTable = async (pokemonObj, table) => {
 
         tbody.appendChild(newTr);
     }
-
-    // Can just hide the spinner now, since we have the data we will never need it again
-    table.querySelector("div.spinner-border").classList.remove("show");
-    table.querySelector("tr").classList.remove("collapse");
-
-
 } 
 
 const createPkmnDetailedInfoTable = (name, pokemonObj) => {
+    name = name.replace(' ', '-').toLowerCase();
     const template = document.getElementById("pkmnDetailedInfoTable");
     const templateContent = template.content;
     const clone = templateContent.cloneNode(true);
     const table = clone.querySelectorAll("table")[0];
-    table.setAttribute("id", name.replace(' ', '-').toLowerCase()+"statTable");
-    table.querySelector("div.spinner-border")
-    table.querySelector(".info-header")
-    table.addEventListener('show.bs.collapse', event => {
-        // TODO: dont need to do this if already retrieved data
-        populatePkmnDetailedInfoTable(pokemonObj, table, event)
+    table.setAttribute("id", name+"statTable");
+    const spinner = table.querySelector("div.spinner-border");
+    const infoHeader = table.querySelector(".info-header");
+    table.addEventListener('show.bs.collapse', async (event) => {
+        if (infoHeader.dataset.loaded === 'false') {
+            spinner.setAttribute("style", "display: block;")
+
+            await populatePkmnDetailedInfoTable(pokemonObj, table, spinner, event)
+            spinner.setAttribute("style", "display: none;")
+            infoHeader.setAttribute("style", "display: visible;")
+
+            infoHeader.dataset.loaded = 'true';
+        }
     })
     return table;
 }
@@ -161,8 +163,8 @@ const createPkmnRow = (name, stats) => {
     const sprite = document.createElement("img");
     sprite.src = getPokemonImageSrc(stats.id);
     sprite.classList.add("img-fluid");
-    sprite.setAttribute("height", 48);
-    sprite.setAttribute("width", 48);
+    sprite.setAttribute("height", 60);
+    sprite.setAttribute("width", 60);
 
     spriteTd.appendChild(sprite);
     newTr.appendChild(spriteTd);
@@ -189,19 +191,6 @@ const createPkmnRow = (name, stats) => {
     winTd.textContent = stats.winPercent;
     newTr.appendChild(winTd);
 
-    // const itemsTd = document.createElement("td");
-    // itemsTd.textContent = JSON.stringify(stats.itemPercents);
-    // newTr.appendChild(itemsTd);
-
-    // const usageTd = document.createElement("td");
-
-    // const abilitiesTd = document.createElement("td");
-    // const teraTd = document.createElement("td");
-
-    // const movesTd = document.createElement("td");
-    // movesTd.textContent = JSON.stringify(stats.movePercents);
-    // newTr.appendChild(movesTd);
-
     return newTr;
 }
 var tourneyId = "";
@@ -214,7 +203,6 @@ document.querySelector("#pkmnForm").addEventListener("submit", async function(e)
         const tableBody = document.getElementById("tableBody");
 
         for (const [name, stats] of Object.entries(pokemonStats)) {
-            //const detailedInfo = testDetailedInfo;//await getPokemonStats(tourneyId, stats.id);
             const newRow = createPkmnRow(name, stats);
             const detailedStats = createPkmnDetailedInfoTable(name, stats);
             tableBody.appendChild(newRow);
