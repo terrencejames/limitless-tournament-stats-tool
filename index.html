@@ -24,6 +24,7 @@
           <tr>
             <th scope="col"></th>
             <th scope="col">Name</th>
+            <th scope="col">Games</th>
             <th scope="col">Use Rate</th>
             <th scope="col">Win Rate</th>
           </tr>
@@ -54,9 +55,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
   </body>
   <template id="pkmnDetailedInfoTable">
-    <table class="table collapse">
+
+    <table class="table table-borderless">
       <thead>
-        <tr>
+        <tr style="border-style: hidden;">          
+          <td>
+            <div class="spinner-border mt-4 collapse" role="status">
+            <span class="visually-hidden">Loading...</span>
+            </div>
+          </td>
+        </tr>
+        <tr class="info-header collapse">
           <th scope="col">Moves</th>
           <th scope="col"></th>
 
@@ -70,6 +79,8 @@
           <th scope="col"></th>
 
         </tr>
+
+
       </thead>
       <tbody>
       </tbody>

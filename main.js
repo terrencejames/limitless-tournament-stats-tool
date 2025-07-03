@@ -1,84 +1,84 @@
-const testPokemonStats = {
-    "Glimmora": {
-        "usageTotal": "18",
-        "id": "glimmora",
-        "name": "Glimmora",
-        "usagePercent": "81.82%",
-        "winPercent": "53.40%"
-    },
-    "Tinkaton": {
-        "usageTotal": "15",
-        "id": "tinkaton",
-        "name": "Tinkaton",
-        "usagePercent": "68.18%",
-        "winPercent": "48.81%"
-    },
-    "Hydreigon": {
-        "usageTotal": "15",
-        "id": "hydreigon",
-        "name": "Hydreigon",
-        "usagePercent": "68.18%",
-        "winPercent": "50.00%"
-    },
-};
+// const testPokemonStats = {
+//     "Glimmora": {
+//         "usageTotal": "18",
+//         "id": "glimmora",
+//         "name": "Glimmora",
+//         "usagePercent": "81.82%",
+//         "winPercent": "53.40%"
+//     },
+//     "Tinkaton": {
+//         "usageTotal": "15",
+//         "id": "tinkaton",
+//         "name": "Tinkaton",
+//         "usagePercent": "68.18%",
+//         "winPercent": "48.81%"
+//     },
+//     "Hydreigon": {
+//         "usageTotal": "15",
+//         "id": "hydreigon",
+//         "name": "Hydreigon",
+//         "usagePercent": "68.18%",
+//         "winPercent": "50.00%"
+//     },
+// };
 
-const testDetailedInfo = {
-    "pokemonName": "Glimmora",
-    "stats": {
-        "itemTotals": {
-            "Power Herb": 12,
-            "Focus Sash": 6
-        },
-        "itemPercents": {
-            "Power Herb": "66.67%",
-            "Focus Sash": "33.33%"
-        },
-        "moveTotals": {
-            "Spiky Shield": 16,
-            "Sludge Bomb": 13,
-            "Meteor Beam": 12,
-            "Earth Power": 11,
-            "Power Gem": 7,
-            "Mortal Spin": 4,
-            "Energy Ball": 3,
-            "Sludge Wave": 3,
-            "Stealth Rock": 2,
-            "Smack Down": 1
-        },
-        "movePercents": {
-            "Spiky Shield": "88.89%",
-            "Sludge Bomb": "72.22%",
-            "Meteor Beam": "66.67%",
-            "Earth Power": "61.11%",
-            "Power Gem": "38.89%",
-            "Mortal Spin": "22.22%",
-            "Energy Ball": "16.67%",
-            "Sludge Wave": "16.67%",
-            "Stealth Rock": "11.11%",
-            "Smack Down": "5.56%"
-        },
-        "teraTotal": {
-            "Tera Type: Grass": 13,
-            "Tera Type: Water": 2,
-            "Tera Type: Ground": 1,
-            "Tera Type: Dragon": 1,
-            "Tera Type: Rock": 1
-        },
-        "teraPercents": {
-            "Tera Type: Grass": "72.22%",
-            "Tera Type: Water": "11.11%",
-            "Tera Type: Ground": "5.56%",
-            "Tera Type: Dragon": "5.56%",
-            "Tera Type: Rock": "5.56%"
-        },
-        "abilityTotals": {
-            "Ability: Toxic Debris": 18
-        },
-        "abilityPercents": {
-            "Ability: Toxic Debris": "100.00%"
-        }
-    }
-}
+// const testDetailedInfo = {
+//     "pokemonName": "Glimmora",
+//     "stats": {
+//         "itemTotals": {
+//             "Power Herb": 12,
+//             "Focus Sash": 6
+//         },
+//         "itemPercents": {
+//             "Power Herb": "66.67%",
+//             "Focus Sash": "33.33%"
+//         },
+//         "moveTotals": {
+//             "Spiky Shield": 16,
+//             "Sludge Bomb": 13,
+//             "Meteor Beam": 12,
+//             "Earth Power": 11,
+//             "Power Gem": 7,
+//             "Mortal Spin": 4,
+//             "Energy Ball": 3,
+//             "Sludge Wave": 3,
+//             "Stealth Rock": 2,
+//             "Smack Down": 1
+//         },
+//         "movePercents": {
+//             "Spiky Shield": "88.89%",
+//             "Sludge Bomb": "72.22%",
+//             "Meteor Beam": "66.67%",
+//             "Earth Power": "61.11%",
+//             "Power Gem": "38.89%",
+//             "Mortal Spin": "22.22%",
+//             "Energy Ball": "16.67%",
+//             "Sludge Wave": "16.67%",
+//             "Stealth Rock": "11.11%",
+//             "Smack Down": "5.56%"
+//         },
+//         "teraTotal": {
+//             "Tera Type: Grass": 13,
+//             "Tera Type: Water": 2,
+//             "Tera Type: Ground": 1,
+//             "Tera Type: Dragon": 1,
+//             "Tera Type: Rock": 1
+//         },
+//         "teraPercents": {
+//             "Tera Type: Grass": "72.22%",
+//             "Tera Type: Water": "11.11%",
+//             "Tera Type: Ground": "5.56%",
+//             "Tera Type: Dragon": "5.56%",
+//             "Tera Type: Rock": "5.56%"
+//         },
+//         "abilityTotals": {
+//             "Ability: Toxic Debris": 18
+//         },
+//         "abilityPercents": {
+//             "Ability: Toxic Debris": "100.00%"
+//         }
+//     }
+// }
 
 const getPokemonImageSrc = name => `https://img.pokemondb.net/sprites/scarlet-violet/normal/${name.replace("hisui", "hisuian")}.png`;
 
@@ -97,18 +97,17 @@ const getPokemonStats = async (tourneyId, pokemonId) => {
 }
 
 const populatePkmnDetailedInfoTableCell = (list, index) => {
+    const newTdName = document.createElement("td");
+    const newTdPercent = document.createElement("td");
     if (index < list.length) {
         const [name, percent] = list[index];
         
-        const newTdName = document.createElement("td");
-        const newTdPercent = document.createElement("td");
-
-        newTdName.textContent = name;
+        // Trim "Tera Type" and "Ability" from name
+        newTdName.textContent = name.split(":").at(-1).trim() ?? name;
         newTdPercent.textContent = percent;
 
-        return [newTdName, newTdPercent];
     }
-    return [];
+    return [newTdName, newTdPercent];
 }
 const populatePkmnDetailedInfoTable = async (pokemonObj, table) => {
     // Moves, Items, Tera, Abilities
@@ -130,13 +129,13 @@ const populatePkmnDetailedInfoTable = async (pokemonObj, table) => {
         populatePkmnDetailedInfoTableCell(teraList, i).map(cell => newTr.appendChild(cell))
         populatePkmnDetailedInfoTableCell(abilitiesList, i).map(cell => newTr.appendChild(cell))
 
-        // newTr.append(populatePkmnDetailedInfoTableCell(movesList, i))
-        // newTr.append(populatePkmnDetailedInfoTableCell(itemsList, i))
-        // newTr.append(populatePkmnDetailedInfoTableCell(teraList, i))
-        // newTr.append(populatePkmnDetailedInfoTableCell(abilitiesList, i))
-
         tbody.appendChild(newTr);
     }
+
+    // Can just hide the spinner now, since we have the data we will never need it again
+    table.querySelector("div.spinner-border").classList.remove("show");
+    table.querySelector("tr").classList.remove("collapse");
+
 
 } 
 
@@ -145,8 +144,13 @@ const createPkmnDetailedInfoTable = (name, pokemonObj) => {
     const templateContent = template.content;
     const clone = templateContent.cloneNode(true);
     const table = clone.querySelectorAll("table")[0];
-    table.setAttribute("id", name.replace(' ', '-').toLowerCase()+"statTable")
-    table.addEventListener('show.bs.collapse', event => populatePkmnDetailedInfoTable(pokemonObj, table, event))
+    table.setAttribute("id", name.replace(' ', '-').toLowerCase()+"statTable");
+    table.querySelector("div.spinner-border")
+    table.querySelector(".info-header")
+    table.addEventListener('show.bs.collapse', event => {
+        // TODO: dont need to do this if already retrieved data
+        populatePkmnDetailedInfoTable(pokemonObj, table, event)
+    })
     return table;
 }
 //ADD LOADING AND BETTER TABLE STYLING
@@ -172,6 +176,10 @@ const createPkmnRow = (name, stats) => {
     nameLink.textContent = name;
     nameTd.appendChild(nameLink);
     newTr.appendChild(nameTd);
+
+    const gamesTd = document.createElement("td");
+    gamesTd.textContent = stats.usageTotal;
+    newTr.appendChild(gamesTd);
 
     const usageTd = document.createElement("td");
     usageTd.textContent = stats.usagePercent;
