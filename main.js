@@ -82,9 +82,9 @@
 
 const getPokemonImageSrc = name => `https://img.pokemondb.net/sprites/scarlet-violet/normal/${name.replace("hisui", "hisuian")}.png`;
 
-const getTournamentStatsApi = (tourneyId) => `http://api.terrencejam.es/api/v1/tournaments/${tourneyId}/`
+const getTournamentStatsApi = (tourneyId) => `https://api.terrencejam.es/api/v1/tournaments/${tourneyId}/`
 
-const getPokemonStatsApi = (tourneyId, pokemonId) => `http://api.terrencejam.es/api/v1/tournaments/${tourneyId}/${pokemonId}`
+const getPokemonStatsApi = (tourneyId, pokemonId) => `https://api.terrencejam.es/api/v1/tournaments/${tourneyId}/${pokemonId}`
 
 const getTournamentStats = async (tourneyId) => {
     const resp = await fetch(getTournamentStatsApi(tourneyId));
